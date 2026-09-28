@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Story ❤️</title>
+
+<style>
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080008;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   MOVING HEARTS
+========================= */
+
+.hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    color: #ff4d88;
+    font-size: 20px;
+    animation: floatHeart linear infinite;
+    opacity: .7;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   LOCK SCREEN
+========================= */
+
+#lockScreen {
+
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #36001f,
+            #080008 65%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+
+    transition: 1s;
+}
+
+.lockBox {
+
+    width: 90%;
+    max-width: 420px;
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 40px rgba(255,0,100,.25),
+        inset 0 0 30px rgba(255,255,255,.03);
+
+    backdrop-filter: blur(20px);
+}
+
+.bigHeart {
+
+    font-size: 100px;
+
+    animation:
+        heartbeat 1.5s infinite;
+
+    filter:
+        drop-shadow(
+            0 0 25px #ff0066
+        );
+}
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.lockTitle {
+
+    font-size: 28px;
+    margin: 15px 0 10px;
+}
+
+.lockSubtitle {
+
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+.pinInput {
+
+    width: 100%;
+
+    padding: 16px;
+
+    border-radius: 15px;
+
+    border: none;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,.1);
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    letter-spacing: 10px;
+}
+
+.unlockBtn {
+
+    margin-top: 18px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            45deg,
+            #ff0066,
+            #ff4d9d
+        );
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 25px
+        rgba(255,0,100,.4);
+
+    transition: .3s;
+}
+
+.unlockBtn:hover {
+    transform: scale(1.04);
+}
+
+#error {
+
+    color: #ff6b9d;
+
+    margin-top: 15px;
+
+    min-height: 20px;
+}
+
+
+/* =========================
+   MAIN WEBSITE
+========================= */
+
+#website {
+
+    display: none;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.typing {
+
+    font-size:
+        clamp(
+            25px,
+            6vw,
+            55px
+        );
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 15px #ff0066,
+        0 0 35px #ff0066;
+
+    min-height: 80px;
+}
+
+.cursor {
+    animation: blink .7s infinite;
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.heroText {
+
+    margin-top: 25px;
+
+    color: #ddd;
+
+    font-size: 18px;
+
+    max-width: 600px;
+
+    line-height: 2;
+}
+
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+
+.musicBox {
+
+    width: 90%;
+
+    max-width: 500px;
+
+    margin-top: 45px;
+
+    padding: 22px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,0,100,.2);
+}
+
+.musicTitle {
+
+    font-size: 18px;
+
+    margin-bottom: 15px;
+}
+
+audio {
+    width: 100%;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story {
+
+    padding: 100px 20px;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.dateTitle {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.dateTitle h2 {
+
+    font-size: 35px;
+
+    text-shadow:
+        0 0 15px #ff0066;
+}
+
+.dateTitle p {
+
+    margin-top: 15px;
+
+    color: #ff8db7;
+}
+
+
+/* =========================
+   LIVE COUNTER
+========================= */
+
+.counterBox {
+
+    width: 90%;
+
+    max-width: 700px;
+
+    margin:
+        0 auto 80px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,0,100,.15);
+
+    backdrop-filter: blur(15px);
+}
+
+.counterBox h3 {
+
+    font-size: 24px;
+
+    color: #ff75aa;
+
+    margin-bottom: 20px;
+}
+
+#loveCounter {
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            40px
+        );
+
+    font-weight: bold;
+
+    color: white;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 0 15px #ff0066,
+        0 0 30px #ff0066;
+}
+
+.counterBox p {
+
+    margin-top: 15px;
+
+    color: #aaa;
+}
+
+
+/* =========================
+   MEMORY
+========================= */
+
+.memory {
+
+    margin-bottom: 100px;
+
+    padding: 20px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,100,.1);
+
+    transition: .4s;
+}
+
+.memory:hover {
+
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 0 40px
+        rgba(255,0,100,.25);
+}
+
+.memory img {
+
+    width: 100%;
+
+    max-height: 550px;
+
+    object-fit: cover;
+
+    border-radius: 22px;
+
+    display: block;
+}
+
+.memoryText {
+
+    padding:
+        25px 10px 10px;
+
+    text-align: center;
+}
+
+.memoryText h3 {
+
+    font-size: 25px;
+
+    margin-bottom: 12px;
+
+    color: #ff6fa3;
+}
+
+.memoryText p {
+
+    color: #ddd;
+
+    line-height: 2;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   FINAL SECTION
+========================= */
+
+.finalSection {
+
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.messageBtn {
+
+    margin-top: 25px;
+
+    padding: 18px 45px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            45deg,
+            #ff0066,
+            #ff4d9d
+        );
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,100,.5);
+
+    transition: .3s;
+}
+
+.messageBtn:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+#finalMessage {
+
+    display: none;
+
+    margin-top: 35px;
+
+    max-width: 650px;
+
+    padding: 35px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    line-height: 2.2;
+
+    animation:
+        messageAppear 1s ease;
+}
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.9);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #777;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MOVING HEARTS
+========================= -->
+
+<div
+    class="hearts"
+    id="hearts">
+</div>
+
+
+<!-- =========================
+     LOCK SCREEN
+========================= -->
+
+<section id="lockScreen">
+
+    <div class="lockBox">
+
+        <div class="bigHeart">
+            ❤️
+        </div>
+
+        <h1 class="lockTitle">
+             special place
+        </h1>
+
+        <p class="lockSubtitle">
+            اكتبي الرقم السري عشان تدخلي ❤️
+        </p>
+
+        <input
+            id="pin"
+            class="pinInput"
+            type="password"
+            maxlength="4"
+            placeholder="••••"
+        >
+
+        <button
+            class="unlockBtn"
+            onclick="unlock()">
+
+             فك القفل
+
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WEBSITE
+========================= -->
+
+<main id="website">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="typing">
+
+            <span id="typingText"></span>
+
+            <span class="cursor">
+                |
+            </span>
+
+        </div>
+
+
+        <p class="heroText">
+
+            في حاجات كتير ممكن تتقال...
+            بس في حاجات أحلى لما تتشاف ❤️
+
+        </p>
+
+
+        <!-- MUSIC -->
+
+        <div class="musicBox">
+
+            <div class="musicTitle">
+
+                🎵 باين حبيت
+
+            </div>
+
+
+            <audio
+                id="music" controls loop>
+                controls>
+
+                <source
+                    src="./pain.mp3"
+                    type="audio/mpeg">
+
+                المتصفح لا يدعم تشغيل الصوت.
+
+            </audio>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORY
+    ========================= -->
+
+    <section class="story">
+
+
+        <div class="dateTitle">
+
+            <h2>
+                يوم لما قولتلك بحبك ❤️
+            </h2>
+
+            <p id="todayDate"></p>
+
+        </div>
+
+
+        <!-- LIVE COUNTER -->
+
+        <div class="counterBox">
+
+            <h3>
+                بقالنا ❤️
+            </h3>
+
+            <div id="loveCounter">
+
+                0 يوم •
+                0 ساعة •
+                0 دقيقة •
+                0 ثانية
+
+            </div>
+
+            <p>
+                والعداد لسه بيحسب... ❤️
+            </p>
+
+        </div>
+
+
+        <!-- MEMORY 1 -->
+
+        <div class="memory">
+
+            <img
+                src="WhatsApp Image 3.jpeg"
+                alt="Memory 1">
+
+            <div class="memoryText">
+
+                <h3>
+                    أول ذكرى ❤️
+                </h3>
+
+                <p>
+                    بحبك
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY 2 -->
+
+        <div class="memory">
+
+            <img
+                src="WhatsApp Image 2.jpeg"
+                alt="Memory 2">
+
+            <div class="memoryText">
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY 3 -->
+
+        <div class="memory">
+
+            <img
+                src="WhatsApp Image.jpeg"
+                alt="Memory 3">
+
+            <div class="memoryText">
+
+                <p></p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY 4 -->
+
+        <div class="memory">
+
+            <img
+                src="WhatsApp Image 4.jpeg"
+                alt="Memory 4">
+
+            <div class="memoryText">
+
+                <p>
+                    بحبك اوييي
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL MESSAGE
+    ========================= -->
+
+    <section class="finalSection">
+
+        <h2>
+            وصلنا لآخر الحكاية... ❤️
+        </h2>
+
+
+        <button
+            class="messageBtn"
+            onclick="showMessage()">
+
+            💌 Message
+
+        </button>
+
+
+        <div id="finalMessage">
+
+            <h2>
+                ❤️ كل سنة وانتي طيبة ❤️
+            </h2>
+
+            <br>
+
+            <p>
+
+                كل سنة وانتي في حياتي،
+                وكل سنة والضحكة بتاعتك موجودة،
+                وكل سنة وفي ذكريات جديدة بنعملها سوا.
+
+                <br><br>
+
+                يمكن الكلام مش هيقدر يوصف كل حاجة،
+                بس أتمنى إن الصفحة دي تفضل ذكرى
+                حلوة نفتكرها دايمًا.
+
+                <br><br>
+
+                ❤️
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        Made with ❤️
+
+    </div>
+
+</main>
+
+
+<script>
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+const PASSWORD = "2006";
+
+
+function unlock() {
+
+    const pin =
+        document.getElementById("pin").value;
+
+    const error =
+        document.getElementById("error");
+
+
+    if (pin === PASSWORD) {
+
+
+        /* تشغيل الأغنية */
+
+        const music =
+            document.getElementById("music");
+
+        music.play().catch(() => {});
+
+
+        /* إخفاء شاشة القفل */
+
+        const lockScreen =
+            document.getElementById("lockScreen");
+
+        lockScreen.style.opacity = "0";
+
+
+        setTimeout(() => {
+
+
+            lockScreen.style.display =
+                "none";
+
+
+            document.getElementById("website")
+                .style.display = "block";
+
+
+            startTyping();
+
+
+        }, 1000);
+
+
+    } else {
+
+
+        error.textContent =
+            "الرقم السري غلط ❤️";
+
+    }
+
+}
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document
+    .getElementById("pin")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                unlock();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   TYPING EFFECT
+========================= */
+
+const messages = [
+
+    "❤ انتي احلى حاجة حصلت ف حياتيي",
+
+    "النهارده مش يوم عادي، انهارده يوم عيد ميلاد اجمل حاجة ف حياتي",
+
+    "وعلشان كده عملتلك المكان ده",
+
+    "اسيبك بقي تتفرجي 😍"
+
+];
+
+
+let messageIndex = 0;
+
+let characterIndex = 0;
+
+
+function startTyping() {
+
+
+    const element =
+        document.getElementById("typingText");
+
+
+    function type() {
+
+
+        if (
+            messageIndex >=
+            messages.length
+        ) {
+
+            return;
+
+        }
+
+
+        const current =
+            messages[messageIndex];
+
+
+        if (
+            characterIndex <
+            current.length
+        ) {
+
+
+            element.textContent +=
+                current.charAt(
+                    characterIndex
+                );
+
+
+            characterIndex++;
+
+
+            setTimeout(
+                type,
+                80
+            );
+
+
+        } else {
+
+
+            setTimeout(() => {
+
+
+                element.textContent =
+                    "";
+
+
+                characterIndex =
+                    0;
+
+
+                messageIndex++;
+
+
+                type();
+
+
+            }, 1500);
+
+        }
+
+    }
+
+
+    type();
+
+}
+
+
+/* =========================
+   TODAY DATE
+========================= */
+
+const dateElement =
+    document.getElementById(
+        "todayDate"
+    );
+
+
+const today =
+    new Date("2025-11-01");
+
+
+const dateText =
+    today.toLocaleDateString(
+        "ar-EG",
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    );
+
+
+dateElement.textContent =
+    dateText;
+
+
+/* =========================
+   LIVE COUNTER
+========================= */
+
+/*
+   غيّر التاريخ ده فقط
+   لو عايز تغير بداية العداد
+*/
+
+const startDate =
+    new Date(
+        "2025-11-01T00:00:00"
+    );
+
+
+function updateCounter() {
+
+
+    const now =
+        new Date();
+
+
+    const difference =
+        now - startDate;
+
+
+    const totalSeconds =
+        Math.floor(
+            difference / 1000
+        );
+
+
+    const days =
+        Math.floor(
+            totalSeconds / 86400
+        );
+
+
+    const hours =
+        Math.floor(
+            (totalSeconds % 86400)
+            / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600)
+            / 60
+        );
+
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    document
+        .getElementById(
+            "loveCounter"
+        )
+        .textContent =
+
+        `${days} يوم • ` +
+        `${hours} ساعة • ` +
+        `${minutes} دقيقة • ` +
+        `${seconds} ثانية`;
+
+}
+
+
+updateCounter();
+
+
+setInterval(
+    updateCounter,
+    1000
+);
+
+
+/* =========================
+   MOVING HEARTS
+========================= */
+
+const heartsContainer =
+    document.getElementById(
+        "hearts"
+    );
+
+
+function createHeart() {
+
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "heart";
+
+
+    heart.textContent =
+        Math.random() > .5
+        ? "❤️"
+        : "💗";
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+
+    heart.style.fontSize =
+        (
+            12 +
+            Math.random() * 25
+        ) + "px";
+
+
+    heart.style.animationDuration =
+        (
+            5 +
+            Math.random() * 8
+        ) + "s";
+
+
+    heart.style.animationDelay =
+        Math.random() * 2 + "s";
+
+
+    heartsContainer.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 15000);
+
+}
+
+
+setInterval(
+    createHeart,
+    400
+);
+
+
+/* =========================
+   FINAL MESSAGE
+========================= */
+
+function showMessage() {
+
+
+    const message =
+        document.getElementById(
+            "finalMessage"
+        );
+
+
+    message.style.display =
+        "block";
+
+
+    message.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "center"
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
